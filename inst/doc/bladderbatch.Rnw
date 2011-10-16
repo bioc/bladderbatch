@@ -1,0 +1,62 @@
+% \VignetteIndexEntry{bladderbatchTutorial}
+% \VignetteKeywords{Gene expression data, batch effects}
+% \VignettePackage{bladderbatch}
+\documentclass[12pt]{article}
+<<echo=FALSE>>=
+options(width=65)
+@ 
+\SweaveOpts{eps=FALSE,echo=TRUE}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{fullpage}
+
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\texttt{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+
+\begin{document}
+\setlength{\parskip}{1\baselineskip}
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{1} 
+\title{The bladderbatch data User's Guide}
+\author{Jeffrey T. Leek}
+\date{Modified: October 6, 2011  Compiled: \today}
+\maketitle
+
+
+%\bibliographystyle{plain}
+\tableofcontents
+
+
+
+\section{Overview}
+
+
+The \Rpackage{bladderbatch} package contains  gene expression data on 57 samples from a bladder cancer study \cite{dyrskjot2004aa} which have been normalized with RMA and pre-processed according to a previously defined protocol \cite{leek2010aa}. The data are in an expression set object with pData including the variables ``sample'', ``outcome'', ``batch'', and ``cancer''. The first variable is the sample number, the second variable is the outcome as defined in the original study, the third variable is a batch variable defined based on the date the microarrays were processed and the cancer variable is a simplified outcome grouping all the cancers together. The data can be accessed as follows: 
+
+<<input>>=
+library(bladderbatch)
+data(bladderdata)
+
+# Get the expression data
+edata = exprs(bladderEset)
+
+# Get the pheno data
+pdata = pData(bladderEset)
+@
+
+The data in this package are used as an example data set in the \Rpackage{sva} package. 
+
+
+\begin{thebibliography}{1}
+\bibitem{dyrskjot2004aa} Dyrskjot, L.  and Kruhffer, M.  and Thykjaer, T.  and Marcussen, N.  and Jensen, J. L.  and Miller, K.  and Orntoft, T. F., \emph{{G}ene expression in the urinary bladder: a common carcinoma in situ gene expression signature exists disregarding histopathological classification}, Cancer Research 64:4040--4048.
+
+\bibitem{leek2010aa} Leek JT and Scharpf R and Corrada-Bravo H and Simcha D and Langmead B and Johnson WE and Geman D and Baggerly K and Irizarry IR. (2011) \emph{Tackling the widespread and critical impact of batch effects in high-throughput data}, Nature Reviews Genetics 11:733--739.
+\end{thebibliography}
+
+
+
+\end{document}
